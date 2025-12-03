@@ -1,35 +1,65 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Box, Grid, Stack } from "@mui/material";
+import "./App.css";
+import blogData from "./data/BlogPosts.json";
+import CardWithLink from "./components/ui/CardWithLink";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const data = {
+    items: [
+      {
+        title: "Portfolio Performance",
+        description:
+          "Track your daily NAV changes and overall investment growth.",
+      },
+      {
+        title: "Risk Analysis",
+        description:
+          "View drawdowns, volatility, and risk metrics in one dashboard.",
+      },
+      {
+        title: "Asset Allocation",
+        description:
+          "Analyze distribution across equities, bonds, and alternative assets.",
+      },
+    ],
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div style={{ margin: "0 20px" }}>
+        <h1>Home</h1>
+        <Stack
+          direction={{ xs: "column", sm: "row" }}
+          spacing={{ xs: 1, sm: 2, md: 4 }}
+        >
+          {data.items.map((el, index) => (
+            <CardWithLink
+              key={index}
+              title={el.title}
+              description={el.description}
+              link={"https://v0.dev"}
+            />
+          ))}
+        </Stack>
+        <h2>Latest Blogs</h2>
+        <Box sx={{ width: "100%" }}>
+          <Grid container spacing={2}>
+            {blogData.blogPosts.map((post, index) => (
+              <Grid item xs={6} key={index}>
+                <CardWithLink
+                  key={index}
+                  date={post.date}
+                  title={post.title}
+                  description={post.description}
+                  link={"https://v0.dev"}
+                />
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
