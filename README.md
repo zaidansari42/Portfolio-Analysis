@@ -1,56 +1,16 @@
-📊 Portfolio Analysis Dashboard (React)
+# React + Vite
 
-A powerful and intuitive portfolio analysis web application built with React. This project helps users visualize their investment performance over time using interactive charts, performance metrics, and risk analysis tools.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-🚀 Features
+Currently, two official plugins are available:
 
-Interactive Equity Curve Chart
-Plot historical NAV values to visualize portfolio growth and performance trends.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-Drawdown Analysis
-Automatic calculation of maximum drawdown and periods of decline with visual highlights.
+## React Compiler
 
-Customizable Date Range
-Filter data across different timeframes to view short-term or long-term performance.
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-Responsive UI
-Built with modern React patterns to ensure a smooth experience across devices.
+## Expanding the ESLint configuration
 
-Modular & Scalable Architecture
-Clean component structure and reusable utilities designed for future extension.
-
-🛠️ Tech Stack
-
-React.js (Hooks & Functional Components)
-
-Recharts / Chart.js for data visualization
-
-CSS
-
-📁 Folder Structure (Example)
-```
-src/
-  components/
-    EquityCurveChart/
-    DrawdownChart/
-  utils/
-    calculateDrawdown.js
-  data/
-    sampleNavData.json
-```
-
-🎯 Ideal For
-
-Personal investment tracking dashboards
-
-Portfolio backtesting tools
-
-Learning financial data visualization with React
-
-Extensible analytics applications
-
-📦 How to Run
-```
-npm install
-npm start
-```
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
