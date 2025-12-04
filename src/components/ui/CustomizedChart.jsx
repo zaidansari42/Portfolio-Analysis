@@ -9,23 +9,54 @@ import { Box, Typography } from "@mui/material";
 import { navData } from "../../data/navData";
 
 const CustomizedChart = () => {
-  // State Management
+  // States
   const [startDate, setStartDate] = useState(dayjs().subtract(5, "year"));
   const [endDate, setEndDate] = useState(dayjs());
 
-  // Functions
+  const [startError, setStartError] = useState("");
+  const [endError, setEndError] = useState("");
+
+  const handleStartDateChange = (newValue) => {
+    if (!newValue || !newValue.isValid()) return;
+
+    if (newValue.isAfter(endDate)) {
+      setStartError("Start date cannot be after end date");
+    } else {
+      setStartError("");
+      setEndError("");
+      setStartDate(newValue);
+    }
+  };
+
+  const handleEndDateChange = (newValue) => {
+    if (!newValue || !newValue.isValid()) return;
+
+    if (newValue.isBefore(startDate)) {
+      setEndError("End date cannot be before start date");
+    } else {
+      setEndError("");
+      setStartError("");
+      setEndDate(newValue);
+    }
+  };
+
+  // Format NAV data
   const formattedData = navData.map(([date, value]) => {
     const [dd, mm, yyyy] = date.split("-");
     return [`${yyyy}-${mm}-${dd}`, Number(value.toFixed(2))];
   });
 
-  let peak = 0;
-  const drawdownData = formattedData.map(([date, value]) => {
-    peak = Math.max(peak, value);
-    return [date, Number((value - peak).toFixed(2))];
-  });
+  // Drawdown calculation
+  const drawdownData = (() => {
+    let peak = 0;
 
-  // Input details for chart graph
+    return formattedData.map(([date, value]) => {
+      peak = Math.max(peak, value);
+      return [date, Number((value - peak).toFixed(2))];
+    });
+  })();
+
+  // Chart Options
   const option = {
     title: {
       text: "Quant Active Fund Gr",
@@ -39,9 +70,7 @@ const CustomizedChart = () => {
     yAxis: {
       name: "NAV Value",
       type: "value",
-      min: function (value) {
-        return Math.min(0, value.min - 50);
-      },
+      min: (value) => Math.min(0, value.min - 50),
       interval: 50,
       axisLabel: {
         formatter: (value) => Math.round(value / 10) * 10,
@@ -58,34 +87,18 @@ const CustomizedChart = () => {
     ],
 
     series: [
-      {
-        name: "Price",
-        type: "line",
-        showSymbol: false,
-        data: formattedData,
-      },
-
+      { name: "Price", type: "line", showSymbol: false, data: formattedData },
       {
         name: "Drawdown",
         type: "line",
         showSymbol: false,
-        lineStyle: {
-          color: "red",
-          type: "line",
-        },
-        areaStyle: {
-          opacity: 0.1,
-          color: "rgba(255, 0, 0, 0.3)",
-        },
+        lineStyle: { color: "red" },
+        areaStyle: { opacity: 0.1, color: "rgba(255, 0, 0, 0.3)" },
         data: drawdownData,
       },
     ],
 
-    grid: {
-      height: 1000,
-      top: 50,
-      bottom: 50,
-    },
+    grid: { height: 1000, top: 50, bottom: 50 },
   };
 
   return (
@@ -95,16 +108,37 @@ const CustomizedChart = () => {
           Equity Curve
         </Typography>
 
-        <Box sx={{ display: "flex", gap: 2, mb: 2 }}>
+        <Box
+          sx={{
+            display: "flex",
+            gap: 2,
+            mb: 2,
+            mr: 5,
+            justifyContent: "flex-end",
+          }}
+        >
           <DatePicker
-            label="Start Date"
+            label="From Date"
             value={startDate}
-            onChange={(newValue) => setStartDate(newValue)}
+            onChange={handleStartDateChange}
+            slotProps={{
+              textField: {
+                error: Boolean(startError),
+                helperText: startError,
+              },
+            }}
           />
+
           <DatePicker
-            label="End Date"
+            label="To Date"
             value={endDate}
-            onChange={(newValue) => setEndDate(newValue)}
+            onChange={handleEndDateChange}
+            slotProps={{
+              textField: {
+                error: Boolean(endError),
+                helperText: endError,
+              },
+            }}
           />
         </Box>
 
