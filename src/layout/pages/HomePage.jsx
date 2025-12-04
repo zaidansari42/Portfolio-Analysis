@@ -26,7 +26,7 @@ const HomePage = () => {
             key={index}
             title={el.title}
             description={el.description}
-            link={"https://v0.dev"}
+            link={"https://1finance.co.in/investment-planning"}
           />
         ))}
       </Stack>
@@ -43,7 +43,9 @@ const HomePage = () => {
               date={post.date}
               title={post.title}
               description={post.description}
-              link={"https://v0.dev"}
+              link={
+                "http://1finance.co.in/blog/how-to-save-capital-gains-tax-section-54f/"
+              }
             />
           ))}
         </Grid>
