@@ -7,6 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import CustomizedChart from "../../components/ui/CustomizedChart";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -67,56 +68,63 @@ const rows = [
 ];
 const Portfolio = () => {
   return (
-    <Box padding={4} backgroundColor="white">
-      <Typography variant="h6" style={{ marginBottom: "10px" }}>
-        Trailing Returns
-      </Typography>
-      <TableContainer component={Paper} sx={{ boxShadow: "none" }}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
-          <TableHead>
-            <TableRow>
-              <StyledTableCell>NAME</StyledTableCell>
-              <StyledTableCell align="right">YTD</StyledTableCell>
-              <StyledTableCell align="right">1D</StyledTableCell>
-              <StyledTableCell align="right">1W</StyledTableCell>
-              <StyledTableCell align="right">1M</StyledTableCell>
-              <StyledTableCell align="right">3M</StyledTableCell>
-              <StyledTableCell align="right">6M</StyledTableCell>
-              <StyledTableCell align="right">1Y</StyledTableCell>
-              <StyledTableCell align="right">3Y</StyledTableCell>
-              <StyledTableCell align="right">SI</StyledTableCell>
-              <StyledTableCell align="right">DD</StyledTableCell>
-              <StyledTableCell align="right">MAXDD</StyledTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <StyledTableRow key={row.name}>
-                <StyledTableCell>{row.name}</StyledTableCell>
-                <StyledTableCell align="right">{row.ytd}</StyledTableCell>
-                <StyledTableCell align="right">{row.d1}</StyledTableCell>
-                <StyledTableCell align="right">{row.w1}</StyledTableCell>
-                <StyledTableCell align="right">{row.m1}</StyledTableCell>
-                <StyledTableCell align="right">{row.m3}</StyledTableCell>
-                <StyledTableCell align="right">{row.m6}</StyledTableCell>
-                <StyledTableCell align="right">{row.y1}</StyledTableCell>
-                <StyledTableCell align="right">{row.y3}</StyledTableCell>
-                <StyledTableCell align="right">{row.si}</StyledTableCell>
-                <StyledTableCell align="right">{row.dd}</StyledTableCell>
-                <StyledTableCell align="right">{row.maxdd}</StyledTableCell>
-              </StyledTableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <Typography
-        variant="caption"
-        gutterBottom
-        sx={{ display: "block", color: "grey" }}
-      >
-        Note: Returns above 1 year are annualised.
-      </Typography>
-    </Box>
+    <>
+      <Box padding={4} backgroundColor="white">
+        <Box>
+          <Typography variant="h6" style={{ marginBottom: "10px" }}>
+            Trailing Returns
+          </Typography>
+          <TableContainer component={Paper} sx={{ boxShadow: "none" }}>
+            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell>NAME</StyledTableCell>
+                  <StyledTableCell align="right">YTD</StyledTableCell>
+                  <StyledTableCell align="right">1D</StyledTableCell>
+                  <StyledTableCell align="right">1W</StyledTableCell>
+                  <StyledTableCell align="right">1M</StyledTableCell>
+                  <StyledTableCell align="right">3M</StyledTableCell>
+                  <StyledTableCell align="right">6M</StyledTableCell>
+                  <StyledTableCell align="right">1Y</StyledTableCell>
+                  <StyledTableCell align="right">3Y</StyledTableCell>
+                  <StyledTableCell align="right">SI</StyledTableCell>
+                  <StyledTableCell align="right">DD</StyledTableCell>
+                  <StyledTableCell align="right">MAXDD</StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows.map((row) => (
+                  <StyledTableRow key={row.name}>
+                    <StyledTableCell>{row.name}</StyledTableCell>
+                    <StyledTableCell align="right">{row.ytd}</StyledTableCell>
+                    <StyledTableCell align="right">{row.d1}</StyledTableCell>
+                    <StyledTableCell align="right">{row.w1}</StyledTableCell>
+                    <StyledTableCell align="right">{row.m1}</StyledTableCell>
+                    <StyledTableCell align="right">{row.m3}</StyledTableCell>
+                    <StyledTableCell align="right">{row.m6}</StyledTableCell>
+                    <StyledTableCell align="right">{row.y1}</StyledTableCell>
+                    <StyledTableCell align="right">{row.y3}</StyledTableCell>
+                    <StyledTableCell align="right">{row.si}</StyledTableCell>
+                    <StyledTableCell align="right">{row.dd}</StyledTableCell>
+                    <StyledTableCell align="right">{row.maxdd}</StyledTableCell>
+                  </StyledTableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <Typography
+            variant="caption"
+            gutterBottom
+            sx={{ display: "block", color: "grey" }}
+          >
+            Note: Returns above 1 year are annualised.
+          </Typography>
+        </Box>
+        <Box>
+          <CustomizedChart />
+        </Box>
+      </Box>
+    </>
   );
 };
 
