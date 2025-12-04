@@ -1,7 +1,25 @@
-import { Box, Grid, Stack } from "@mui/material";
+import HomeIcon from "@mui/icons-material/Home";
+import ShowChartIcon from "@mui/icons-material/ShowChart";
+import {
+  AppBar,
+  Box,
+  Divider,
+  Drawer,
+  Grid,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Stack,
+  Toolbar,
+  Typography,
+} from "@mui/material";
+
+import HomePage from "./layout/pages/HomePage";
+import qodeLogo from "./assets/qodeadvisors_logo.jpeg";
+
 import "./App.css";
-import blogData from "./data/BlogPosts.json";
-import CardWithLink from "./components/ui/CardWithLink";
 
 function App() {
   const data = {
@@ -24,40 +42,74 @@ function App() {
     ],
   };
 
+  const drawerWidth = 240;
+
   return (
     <>
-      <div style={{ margin: "20px 50px 20px 300px" }}>
-        <h1>Home</h1>
-        <Stack
-          direction={{ xs: "column", sm: "row" }}
-          spacing={{ xs: 1, sm: 2, md: 4 }}
+      <Box sx={{ display: "flex" }}>
+        <AppBar
+          position="fixed"
+          sx={{
+            width: `calc(100% - ${drawerWidth}px)`,
+            ml: `${drawerWidth}px`,
+          }}
+        ></AppBar>
+        <Drawer
+          sx={{
+            width: drawerWidth,
+            flexShrink: 0,
+            "& .MuiDrawer-paper": {
+              width: drawerWidth,
+              boxSizing: "border-box",
+            },
+          }}
+          variant="permanent"
+          anchor="left"
         >
-          {data.items.map((el, index) => (
-            <CardWithLink
-              key={index}
-              title={el.title}
-              description={el.description}
-              link={"https://v0.dev"}
+          <Toolbar>
+            <img
+              src={qodeLogo}
+              alt="Car"
+              style={{
+                maxWidth: "50px",
+                maxHeight: "70px",
+                objectFit: "cover",
+                marginRight: "10px",
+              }}
             />
-          ))}
-        </Stack>
-        <h2>Latest Blogs</h2>
-        <Box sx={{ width: "100%" }}>
-          <Grid container spacing={2}>
-            {blogData.blogPosts.map((post, index) => (
-              <Grid item xs={6} key={index}>
-                <CardWithLink
-                  key={index}
-                  date={post.date}
-                  title={post.title}
-                  description={post.description}
-                  link={"https://v0.dev"}
-                />
-              </Grid>
+            <Typography variant="h6" noWrap component="div">
+              Advisors LLP
+            </Typography>
+          </Toolbar>
+          <Divider />
+          <List>
+            {["Home", "Portfolio"].map((text, index) => (
+              <ListItem key={text} disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    {index % 2 === 0 ? <HomeIcon /> : <ShowChartIcon />}
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </ListItem>
             ))}
-          </Grid>
-        </Box>
-      </div>
+          </List>
+          <Divider />
+          <List>
+            {["About Me"].map((text, index) => (
+              <ListItem key={text} disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    {index % 2 === 0 ? <HomeIcon /> : <ShowChartIcon />}
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </Drawer>
+        <HomePage items={data.items}></HomePage>
+      </Box>
     </>
   );
 }

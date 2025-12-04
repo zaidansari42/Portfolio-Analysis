@@ -5,10 +5,14 @@
 
   color-scheme: light dark;
   color: #000000;
-  background-color: #f9fafb;
+  background-color: #ededed;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #ededed;
 }
