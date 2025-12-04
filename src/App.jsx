@@ -17,6 +17,7 @@ function App() {
           <div
             style={{
               margin: "20px 50px 20px 80px",
+              width: "100%",
             }}
           >
             <Routes>
