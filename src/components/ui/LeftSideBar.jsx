@@ -18,62 +18,73 @@ import {
 
 import qodeLogo from "../../assets/qodeadvisors_logo.jpeg";
 
-const LeftSideBar = (props) => {
+const LeftSideBar = () => {
+  const drawerWidth = 240;
+
   return (
-    <Drawer
-      sx={{
-        width: props.drawerWidth,
-        flexShrink: 0,
-        "& .MuiDrawer-paper": {
-          width: props.drawerWidth,
-          boxSizing: "border-box",
-        },
-      }}
-      variant="permanent"
-      anchor="left"
-    >
-      <Toolbar>
-        <img
-          src={qodeLogo}
-          alt="Car"
-          style={{
-            maxWidth: "50px",
-            maxHeight: "70px",
-            objectFit: "cover",
-            marginRight: "10px",
-          }}
-        />
-        <Typography variant="h6" noWrap component="div">
-          Advisors LLP
-        </Typography>
-      </Toolbar>
-      <Divider />
-      <List>
-        {["Home", "Portfolio"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <HomeIcon /> : <ShowChartIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["About Me"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <HomeIcon /> : <ShowChartIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Drawer>
+    <>
+      <AppBar
+        position="fixed"
+        sx={{
+          width: `calc(100% - ${drawerWidth}px)`,
+          ml: `${drawerWidth}px`,
+        }}
+      ></AppBar>
+      <Drawer
+        sx={{
+          width: drawerWidth,
+          flexShrink: 0,
+          "& .MuiDrawer-paper": {
+            width: drawerWidth,
+            boxSizing: "border-box",
+          },
+        }}
+        variant="permanent"
+        anchor="left"
+      >
+        <Toolbar>
+          <img
+            src={qodeLogo}
+            alt="Car"
+            style={{
+              maxWidth: "50px",
+              maxHeight: "70px",
+              objectFit: "cover",
+              marginRight: "10px",
+            }}
+          />
+          <Typography variant="h6" noWrap component="div">
+            Advisors LLP
+          </Typography>
+        </Toolbar>
+        <Divider />
+        <List>
+          {["Home", "Portfolio"].map((text, index) => (
+            <ListItem key={text} disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  {index % 2 === 0 ? <HomeIcon /> : <ShowChartIcon />}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+        <Divider />
+        <List>
+          {["About Me"].map((text, index) => (
+            <ListItem key={text} disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  {index % 2 === 0 ? <HomeIcon /> : <ShowChartIcon />}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </Drawer>
+    </>
   );
 };
 

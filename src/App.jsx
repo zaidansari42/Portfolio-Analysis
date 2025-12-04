@@ -1,6 +1,7 @@
 import { AppBar, Box } from "@mui/material";
 
 import HomePage from "./layout/pages/HomePage";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import "./App.css";
 import LeftSideBar from "./components/ui/LeftSideBar";
@@ -26,19 +27,10 @@ function App() {
     ],
   };
 
-  const drawerWidth = 240;
-
   return (
     <>
       <Box sx={{ display: "flex" }}>
-        <AppBar
-          position="fixed"
-          sx={{
-            width: `calc(100% - ${drawerWidth}px)`,
-            ml: `${drawerWidth}px`,
-          }}
-        ></AppBar>
-        <LeftSideBar drawerWidth={drawerWidth}></LeftSideBar>
+        <LeftSideBar />
         <HomePage items={data.items}></HomePage>
       </Box>
     </>
