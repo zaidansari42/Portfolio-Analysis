@@ -1,10 +1,12 @@
-import { Box, Typography } from "@mui/material";
+import React, { useState } from "react";
 import ReactECharts from "echarts-for-react";
-import { navData } from "../../data/navData";
-import { useState } from "react";
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { Box, Typography } from "@mui/material";
+
+import { navData } from "../../data/navData";
 
 const CustomizedChart = () => {
   // State Management
@@ -14,7 +16,7 @@ const CustomizedChart = () => {
   // Functions
   const formattedData = navData.map(([date, value]) => {
     const [dd, mm, yyyy] = date.split("-");
-    return [`${yyyy}-${mm}-${dd}`, value.toFixed(2)];
+    return [`${yyyy}-${mm}-${dd}`, Number(value.toFixed(2))];
   });
 
   let peak = 0;
@@ -92,20 +94,24 @@ const CustomizedChart = () => {
         <Typography variant="h6" style={{ marginBottom: "10px" }}>
           Equity Curve
         </Typography>
-        <Box>
+
+        <Box sx={{ display: "flex", gap: 2, mb: 2 }}>
           <DatePicker
-            label="Select Start Date"
+            label="Start Date"
             value={startDate}
             onChange={(newValue) => setStartDate(newValue)}
           />
-          -
           <DatePicker
-            label="Select End Date"
+            label="End Date"
             value={endDate}
             onChange={(newValue) => setEndDate(newValue)}
           />
         </Box>
+
         <ReactECharts
+          key={`${startDate.format("YYYY-MM-DD")}_${endDate.format(
+            "YYYY-MM-DD"
+          )}`}
           style={{ height: "500px", width: "100%" }}
           option={option}
         />
