@@ -38,15 +38,13 @@ const HomePage = () => {
       >
         <Grid container spacing={2}>
           {blogData.blogPosts.map((post, index) => (
-            <Grid item xs={6} key={index}>
-              <CardWithLink
-                key={index}
-                date={post.date}
-                title={post.title}
-                description={post.description}
-                link={"https://v0.dev"}
-              />
-            </Grid>
+            <CardWithLink
+              key={index}
+              date={post.date}
+              title={post.title}
+              description={post.description}
+              link={"https://v0.dev"}
+            />
           ))}
         </Grid>
       </Box>

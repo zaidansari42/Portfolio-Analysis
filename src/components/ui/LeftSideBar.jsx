@@ -67,8 +67,8 @@ const LeftSideBar = () => {
         <Divider />
         <List>
           {["Home", "Portfolio"].map((text, index) => (
-            <NavLink to={index % 2 === 0 ? "/" : "/portfolio"} end>
-              <ListItem key={text} disablePadding>
+            <NavLink key={text} to={index % 2 === 0 ? "/" : "/portfolio"} end>
+              <ListItem disablePadding>
                 <ListItemButton sx={{ textDecoration: "none", color: "green" }}>
                   <ListItemIcon>
                     {index % 2 === 0 ? <HomeIcon /> : <ShowChartIcon />}
