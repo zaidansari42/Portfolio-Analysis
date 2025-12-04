@@ -1,29 +1,30 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import ReactECharts from "echarts-for-react";
-import dayjs from "dayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { Box, Button, Typography } from "@mui/material";
+import {
+  formatNavData,
+  calculateDrawdown,
+  validateStartDate,
+  validateEndDate,
+  ORIGINAL_DATES,
+} from "../../utils/chartUtils";
 
 import { navData } from "../../data/navData";
 
 const CustomizedChart = () => {
   // States
-  const [startDate, setStartDate] = useState(dayjs().subtract(5, "year"));
-  const [endDate, setEndDate] = useState(dayjs());
+  const [startDate, setStartDate] = useState(ORIGINAL_DATES.start);
+  const [endDate, setEndDate] = useState(ORIGINAL_DATES.end);
 
   const [startError, setStartError] = useState("");
   const [endError, setEndError] = useState("");
 
-  const originalDatesRef = useRef({
-    start: dayjs().subtract(5, "year"),
-    end: dayjs(),
-  });
-
   const handleReset = () => {
-    setStartDate(originalDatesRef.current.start);
-    setEndDate(originalDatesRef.current.end);
+    setStartDate(ORIGINAL_DATES.start);
+    setEndDate(ORIGINAL_DATES.end);
     setStartError("");
     setEndError("");
   };
@@ -31,10 +32,10 @@ const CustomizedChart = () => {
   const handleStartDateChange = (newValue) => {
     if (!newValue || !newValue.isValid()) return;
 
-    if (newValue.isAfter(endDate)) {
-      setStartError("Start date cannot be after end date");
-    } else {
-      setStartError("");
+    const error = validateStartDate(newValue, endDate);
+    setStartError(error);
+
+    if (!error) {
       setEndError("");
       setStartDate(newValue);
     }
@@ -43,30 +44,17 @@ const CustomizedChart = () => {
   const handleEndDateChange = (newValue) => {
     if (!newValue || !newValue.isValid()) return;
 
-    if (newValue.isBefore(startDate)) {
-      setEndError("End date cannot be before start date");
-    } else {
-      setEndError("");
+    const error = validateEndDate(startDate, newValue);
+    setEndError(error);
+
+    if (!error) {
       setStartError("");
       setEndDate(newValue);
     }
   };
 
-  // Format NAV data
-  const formattedData = navData.map(([date, value]) => {
-    const [dd, mm, yyyy] = date.split("-");
-    return [`${yyyy}-${mm}-${dd}`, Number(value.toFixed(2))];
-  });
-
-  // Drawdown calculation
-  const drawdownData = (() => {
-    let peak = 0;
-
-    return formattedData.map(([date, value]) => {
-      peak = Math.max(peak, value);
-      return [date, Number((value - peak).toFixed(2))];
-    });
-  })();
+  const formattedData = formatNavData(navData);
+  const drawdownData = calculateDrawdown(formattedData);
 
   // Chart Options
   const option = {
