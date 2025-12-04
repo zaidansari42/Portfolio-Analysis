@@ -9,7 +9,7 @@ import React from "react";
 
 const CardWithLink = ({ title, date, description, link }) => {
   return (
-    <Card sx={{ maxHeight: 210, maxWidth: date ? "44vw" : "none" }}>
+    <Card sx={{ maxHeight: 210, maxWidth: date ? "36vw" : "none" }}>
       <CardContent>
         {date && (
           <Typography sx={{ color: "text.secondary", fontSize: 14 }}>
@@ -21,7 +21,17 @@ const CardWithLink = ({ title, date, description, link }) => {
           {title}
         </Typography>
 
-        <Typography variant="body2">{description}</Typography>
+        <Typography
+          variant="body2"
+          sx={{
+            display: "-webkit-box",
+            WebkitBoxOrient: "vertical",
+            WebkitLineClamp: 3,
+            overflow: "hidden",
+          }}
+        >
+          {description}
+        </Typography>
       </CardContent>
 
       <CardActions>

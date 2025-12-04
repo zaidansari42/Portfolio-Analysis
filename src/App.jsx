@@ -26,7 +26,7 @@ function App() {
 
   return (
     <>
-      <div style={{ margin: "0 20px" }}>
+      <div style={{ margin: "20px 50px 20px 300px" }}>
         <h1>Home</h1>
         <Stack
           direction={{ xs: "column", sm: "row" }}
