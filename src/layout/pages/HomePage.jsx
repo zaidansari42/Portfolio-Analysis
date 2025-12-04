@@ -3,15 +3,12 @@ import React from "react";
 import { Box, Grid, Stack } from "@mui/material";
 
 import blogData from "../../data/BlogPosts.json";
+import websiteData from "../../data/WebsiteLinks.json";
 import CardWithLink from "../../components/ui/CardWithLink";
 
-const HomePage = (props) => {
+const HomePage = () => {
   return (
-    <div
-      style={{
-        margin: "20px 50px 20px 80px",
-      }}
-    >
+    <>
       <h1>Home</h1>
       <Stack
         direction={{
@@ -24,7 +21,7 @@ const HomePage = (props) => {
           md: 4,
         }}
       >
-        {props.items.map((el, index) => (
+        {websiteData.items.map((el, index) => (
           <CardWithLink
             key={index}
             title={el.title}
@@ -53,7 +50,7 @@ const HomePage = (props) => {
           ))}
         </Grid>
       </Box>
-    </div>
+    </>
   );
 };
 

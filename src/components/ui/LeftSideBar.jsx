@@ -1,4 +1,5 @@
 import HomeIcon from "@mui/icons-material/Home";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import ShowChartIcon from "@mui/icons-material/ShowChart";
 import {
   AppBar,
@@ -17,6 +18,7 @@ import {
 } from "@mui/material";
 
 import qodeLogo from "../../assets/qodeadvisors_logo.jpeg";
+import { NavLink } from "react-router-dom";
 
 const LeftSideBar = () => {
   const drawerWidth = 240;
@@ -53,35 +55,42 @@ const LeftSideBar = () => {
               marginRight: "10px",
             }}
           />
-          <Typography variant="h6" noWrap component="div">
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ color: "green" }}
+          >
             Advisors LLP
           </Typography>
         </Toolbar>
         <Divider />
         <List>
           {["Home", "Portfolio"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <HomeIcon /> : <ShowChartIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
+            <NavLink to={index % 2 === 0 ? "/" : "/portfolio"} end>
+              <ListItem key={text} disablePadding>
+                <ListItemButton sx={{ textDecoration: "none", color: "green" }}>
+                  <ListItemIcon>
+                    {index % 2 === 0 ? <HomeIcon /> : <ShowChartIcon />}
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </ListItem>
+            </NavLink>
           ))}
         </List>
         <Divider />
         <List>
-          {["About Me"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
+          <NavLink to="/about_me" end>
+            <ListItem disablePadding>
+              <ListItemButton sx={{ textDecoration: "none", color: "green" }}>
                 <ListItemIcon>
-                  {index % 2 === 0 ? <HomeIcon /> : <ShowChartIcon />}
+                  <AccountBoxIcon />
                 </ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemText primary={"About Me"} />
               </ListItemButton>
             </ListItem>
-          ))}
+          </NavLink>
         </List>
       </Drawer>
     </>

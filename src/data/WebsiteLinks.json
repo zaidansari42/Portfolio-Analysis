@@ -1,0 +1,16 @@
+{
+  "items": [
+    {
+      "title": "Portfolio Performance",
+      "description": "Track your daily NAV changes and overall investment growth."
+    },
+    {
+      "title": "Risk Analysis",
+      "description": "View drawdowns, volatility, and risk metrics in one dashboard."
+    },
+    {
+      "title": "Asset Allocation",
+      "description": "Analyze distribution across equities, bonds, and alternative assets."
+    }
+  ]
+}
