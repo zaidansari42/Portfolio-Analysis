@@ -28,7 +28,7 @@ A **React-based dashboard** for analyzing investment portfolios. This dashboard 
 
 _Add your deployed project link here_  
 
-[Live Demo](#)
+[Live Demo](https://portfolio-analysis-alpha.vercel.app/)
 
 ---
 
