@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Container,
-  Grid,
-  Typography,
-  Avatar,
-  Box,
-  Divider,
-} from "@mui/material";
+import { Container, Typography, Avatar, Box, Divider } from "@mui/material";
 
 const About = () => {
   return (

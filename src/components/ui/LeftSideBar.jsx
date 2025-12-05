@@ -1,24 +1,22 @@
+import { NavLink } from "react-router-dom";
+
 import HomeIcon from "@mui/icons-material/Home";
-import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import ShowChartIcon from "@mui/icons-material/ShowChart";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import {
   AppBar,
-  Box,
   Divider,
   Drawer,
-  Grid,
   List,
   ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Stack,
   Toolbar,
   Typography,
 } from "@mui/material";
 
 import qodeLogo from "../../assets/qodeadvisors_logo.jpeg";
-import { NavLink } from "react-router-dom";
 
 const LeftSideBar = () => {
   const drawerWidth = 240;
@@ -45,24 +43,36 @@ const LeftSideBar = () => {
         anchor="left"
       >
         <Toolbar>
-          <img
-            src={qodeLogo}
-            alt="Car"
+          <a
+            href="https://qodeinvest.com/"
+            title="Qode - Advisors LLP"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
-              maxWidth: "50px",
-              maxHeight: "70px",
-              objectFit: "cover",
-              marginRight: "10px",
+              display: "flex",
+              alignItems: "center",
+              textDecoration: "none",
             }}
-          />
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ color: "green" }}
           >
-            Advisors LLP
-          </Typography>
+            <img
+              src={qodeLogo}
+              alt="Car"
+              style={{
+                maxWidth: "50px",
+                maxHeight: "70px",
+                objectFit: "cover",
+                marginRight: "10px",
+              }}
+            />
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ color: "green" }}
+            >
+              Advisors LLP
+            </Typography>
+          </a>
         </Toolbar>
         <Divider />
         <List>

@@ -38,3 +38,36 @@ export const ORIGINAL_DATES = {
   start: dayjs().subtract(5, "year"),
   end: dayjs(),
 };
+
+// Trailling table heading
+export const HEADERS = [
+  "NAME",
+  "YTD",
+  "1D",
+  "1W",
+  "1M",
+  "3M",
+  "6M",
+  "1Y",
+  "3Y",
+  "SI",
+  "DD",
+  "MAXDD",
+];
+
+export const createData = (
+  name,
+  ytd,
+  d1,
+  w1,
+  m1,
+  m3,
+  m6,
+  y1,
+  y3,
+  si,
+  dd,
+  maxdd
+) => {
+  return { name, ytd, d1, w1, m1, m3, m6, y1, y3, si, dd, maxdd };
+};

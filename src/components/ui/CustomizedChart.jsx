@@ -1,15 +1,18 @@
 import React, { useState } from "react";
+
 import ReactECharts from "echarts-for-react";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+
 import { Box, Button, Typography } from "@mui/material";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+
 import {
-  formatNavData,
   calculateDrawdown,
-  validateStartDate,
-  validateEndDate,
+  formatNavData,
   ORIGINAL_DATES,
+  validateEndDate,
+  validateStartDate,
 } from "../../utils/chartUtils";
 
 import { navData } from "../../data/navData";
